@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feliz 2 años 💖</title>
+  <style>
+    :root {
+      --rosa: #ff6b9d;
+      --morado: #7b5cff;
+      --dorado: #ffd17a;
+      --texto: #fdf6f9;
+      --fondo: #1a0b2e;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      color: var(--texto);
+      background: radial-gradient(circle at 20% 20%, #3b1d5c 0%, transparent 45%),
+                  radial-gradient(circle at 80% 80%, #5c1d46 0%, transparent 45%),
+                  var(--fondo);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+      padding: 2rem 1rem;
+    }
+
+    /* Corazones flotando de fondo */
+    .corazon-fondo {
+      position: fixed;
+      bottom: -10%;
+      font-size: 1.5rem;
+      opacity: 0.5;
+      animation: subir linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes subir {
+      from { transform: translateY(0) rotate(0deg); }
+      to   { transform: translateY(-120vh) rotate(360deg); }
+    }
+
+    .tarjeta {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 640px;
+      padding: 3rem 2rem;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 28px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+      animation: aparecer 1s ease-out both;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(30px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .corazon-principal {
+      font-size: 4rem;
+      display: inline-block;
+      animation: latido 1.4s ease-in-out infinite;
+      filter: drop-shadow(0 0 18px rgba(255, 107, 157, 0.8));
+    }
+
+    @keyframes latido {
+      0%, 100% { transform: scale(1); }
+      15%      { transform: scale(1.2); }
+      30%      { transform: scale(1); }
+      45%      { transform: scale(1.15); }
+    }
+
+    h1 {
+      margin-top: 1rem;
+      font-size: clamp(2rem, 6vw, 3rem);
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--rosa), var(--dorado), var(--morado));
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: brillo 4s linear infinite;
+    }
+
+    @keyframes brillo {
+      to { background-position: 200% center; }
+    }
+
+    .subtitulo {
+      margin: 1rem 0 2rem;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: rgba(253, 246, 249, 0.85);
+    }
+
+    .boton {
+      padding: 1rem 2.4rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, var(--rosa), var(--morado));
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .boton:hover {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 14px 40px rgba(255, 107, 157, 0.6);
+    }
+
+    .boton:focus-visible {
+      outline: 3px solid var(--dorado);
+      outline-offset: 4px;
+    }
+
+    .boton[hidden] { display: none; }
+
+    #contador {
+      display: none;
+      margin-top: 1rem;
+    }
+
+    #contador.visible {
+      display: block;
+      animation: aparecer 0.8s ease-out both;
+    }
+
+    .etiqueta-tiempo {
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+      color: var(--dorado);
+      letter-spacing: 0.05em;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    @media (min-width: 520px) {
+      .grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .unidad {
+      padding: 1.2rem 0.5rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 18px;
+    }
+
+    .numero {
+      display: block;
+      font-size: clamp(2rem, 7vw, 2.8rem);
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      color: #fff;
+      text-shadow: 0 0 14px rgba(255, 107, 157, 0.6);
+    }
+
+    .nombre {
+      display: block;
+      margin-top: 0.3rem;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(253, 246, 249, 0.7);
+    }
+
+    .pie {
+      margin-top: 2rem;
+      font-size: 0.95rem;
+      font-style: italic;
+      color: rgba(253, 246, 249, 0.75);
+    }
+
+    .galeria {
+      display: grid;
+      grid-template-columns: 1fr;
+      margin-bottom: 2rem;
+    }
+
+    /* Mismo tamaño total que las dos fotos anteriores juntas (2 retratos 3:4 en fila = 3:2) */
+    .foto {
+      position: relative;
+      aspect-ratio: 3 / 2;
+      overflow: hidden;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: linear-gradient(135deg, rgba(255, 107, 157, 0.25), rgba(123, 92, 255, 0.25));
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      transition: transform 0.3s ease;
+    }
+
+    .foto:hover { transform: translateY(-4px) rotate(-1deg); }
+
+    .foto img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Texto que se ve solo si la imagen todavía no existe */
+    .foto .sin-imagen {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: rgba(253, 246, 249, 0.7);
+      text-align: center;
+    }
+
+    /* Ajustes para móviles */
+    @media (max-width: 480px) {
+      body {
+        padding: 1rem 0.75rem;
+      }
+
+      .tarjeta {
+        padding: 2rem 1.1rem;
+        border-radius: 22px;
+      }
+
+      .corazon-principal {
+        font-size: 3rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .subtitulo {
+        font-size: 1rem;
+        margin: 0.8rem 0 1.5rem;
+      }
+
+      .boton {
+        width: 100%;
+        max-width: 100%;
+        padding: 0.9rem 1rem;
+        font-size: 1rem;
+        line-height: 1.3;
+      }
+
+      .galeria {
+        margin-bottom: 1.5rem;
+      }
+
+      .foto {
+        border-radius: 16px;
+      }
+
+      .unidad {
+        padding: 1rem 0.25rem;
+      }
+
+      .numero {
+        font-size: 1.8rem;
+      }
+
+      .nombre {
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+      }
+
+      .pie {
+        font-size: 0.9rem;
+      }
+
+      .corazon-fondo {
+        font-size: 1.1rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="corazon-fondo" style="left: 5%; animation-duration: 12s;">💗</div>
+  <div class="corazon-fondo" style="left: 20%; animation-duration: 16s; animation-delay: 2s;">💜</div>
+  <div class="corazon-fondo" style="left: 40%; animation-duration: 10s; animation-delay: 4s;">💖</div>
+  <div class="corazon-fondo" style="left: 60%; animation-duration: 14s; animation-delay: 1s;">💞</div>
+  <div class="corazon-fondo" style="left: 80%; animation-duration: 18s; animation-delay: 3s;">💗</div>
+  <div class="corazon-fondo" style="left: 92%; animation-duration: 11s; animation-delay: 5s;">💜</div>
+
+  <main class="tarjeta">
+    <span class="corazon-principal" aria-hidden="true">💖</span>
+    <h1>Feliz 2 años</h1>
+    <p class="subtitulo">
+      Dos años de risas, planes y momentos que van sumando.
+      Gracias por ser mi lugar favorito en el mundo. Te quiero. 
+    </p>
+
+    <!-- Foto: coloca tu imagen en la carpeta "images" con este nombre (o cambia la ruta) -->
+    <section class="galeria" aria-label="Foto de nosotros">
+      <div class="foto">
+        <img src="./images/cbe39015-9347-4ef2-af35-41efdab17774.jpeg" alt="Foto de los dos" onerror="this.remove()">
+        <span class="sin-imagen"></span>
+      </div>
+    </section>
+
+    <button id="btn-mostrar" class="boton" type="button" aria-controls="contador" aria-expanded="false">
+      ¿Cuánto tiempo llevamos juntos? 💞
+    </button>
+
+    <section id="contador" aria-live="polite" aria-label="Tiempo que llevamos juntos">
+      <p class="etiqueta-tiempo">Llevamos juntos</p>
+      <div class="grid">
+        <div class="unidad">
+          <span class="numero" id="anios">0</span>
+          <span class="nombre">Años</span>
+        </div>
+        <div class="unidad">
+          <span class="numero" id="dias">0</span>
+          <span class="nombre">Días</span>
+        </div>
+        <div class="unidad">
+          <span class="numero" id="horas">0</span>
+          <span class="nombre">Horas</span>
+        </div>
+        <div class="unidad">
+          <span class="numero" id="minutos">0</span>
+          <span class="nombre">Minutos</span>
+        </div>
+      </div>
+      <p class="pie">Y cada minuto suma un poquito más. 🥰</p>
+    </section>
+  </main>
+
+  <script>
+    // Fecha de inicio de la relación (año, mes 0-11, día, hora, minuto).
+    // Ejemplo: new Date(2024, 9, 31) = 31 de octubre de 2024.
+    // Cámbiala si la fecha de inicio es otra.
+    const INICIO_RELACION = new Date(2024, 9, 31, 0, 0, 0);
+
+    const btn = document.getElementById("btn-mostrar");
+    const contador = document.getElementById("contador");
+    const elAnios = document.getElementById("anios");
+    const elDias = document.getElementById("dias");
+    const elHoras = document.getElementById("horas");
+    const elMinutos = document.getElementById("minutos");
+
+    let intervalo = null;
+
+    // Calcula años completos, y después días, horas y minutos
+    // desde el último aniversario cumplido.
+    function calcularTiempo(inicio, ahora) {
+      let anios = ahora.getFullYear() - inicio.getFullYear();
+
+      const ultimoAniversario = new Date(inicio);
+      ultimoAniversario.setFullYear(inicio.getFullYear() + anios);
+      if (ultimoAniversario > ahora) {
+        anios--;
+        ultimoAniversario.setFullYear(inicio.getFullYear() + anios);
+      }
+
+      const ms = ahora - ultimoAniversario;
+      const dias = Math.floor(ms / 86400000);
+      const horas = Math.floor((ms % 86400000) / 3600000);
+      const minutos = Math.floor((ms % 3600000) / 60000);
+
+      return { anios, dias, horas, minutos };
+    }
+
+    function actualizar() {
+      const { anios, dias, horas, minutos } = calcularTiempo(INICIO_RELACION, new Date());
+      elAnios.textContent = anios;
+      elDias.textContent = dias;
+      elHoras.textContent = horas;
+      elMinutos.textContent = minutos;
+    }
+
+    btn.addEventListener("click", () => {
+      contador.classList.add("visible");
+      btn.setAttribute("aria-expanded", "true");
+      btn.hidden = true;
+
+      actualizar();
+      if (!intervalo) {
+        intervalo = setInterval(actualizar, 1000);
+      }
+    });
+  </script>
+</body>
+</html>
